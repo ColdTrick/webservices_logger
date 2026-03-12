@@ -1,0 +1,15 @@
+{
+	"name": "coldtrick/webservices_logger",
+	"description": "Log information related to the webservices calls",
+	"homepage": "https://www.coldtrick.com",
+	"type": "elgg-plugin",
+	"keywords": ["elgg", "plugin", "webservices", "api"],
+	"license": "GPL-2.0-only",
+	"support": {
+		"source": "https://github.com/ColdTrick/webservices_logger",
+		"issues": "https://github.com/ColdTrick/webservices_logger/issues"
+	},
+	"conflict": {
+		"elgg/elgg": "<6.3"
+	}
+}
