@@ -4,12 +4,14 @@ namespace ColdTrick\WebservicesLogger\Di;
 
 use Elgg\Router\Route;
 use Elgg\Traits\Di\ServiceFacade;
+use Elgg\Traits\Loggable;
 
 /**
  * Log webservice requests
  */
 class RestLogger {
 	
+	use Loggable;
 	use ServiceFacade;
 	
 	protected ?\WebserviceLogEntry $entity = null;
@@ -35,22 +37,26 @@ class RestLogger {
 		
 		$request = _elgg_services()->request;
 		
-		$this->saveGetParams($request);
-		$this->savePostParams($request);
-		
-		elgg_call(ELGG_IGNORE_ACCESS, function () {
-			if (!$this->events->trigger('api_log', 'webservices_logger', $this->entity)) {
-				return;
-			}
+		try {
+			$this->saveGetParams($request);
+			$this->savePostParams($request);
 			
-			if ($this->log_type === 'none') {
-				return;
-			} elseif ($this->log_type === 'error' && $this->entity->success) {
-				return;
-			}
-			
-			$this->entity->save();
-		});
+			elgg_call(ELGG_IGNORE_ACCESS, function () {
+				if (!$this->events->trigger('api_log', 'webservices_logger', $this->entity)) {
+					return;
+				}
+				
+				if ($this->log_type === 'none') {
+					return;
+				} elseif ($this->log_type === 'error' && $this->entity->success) {
+					return;
+				}
+				
+				$this->entity->save();
+			});
+		} catch (\Throwable $t) {
+			$this->getLogger()->error($t);
+		}
 	}
 	
 	/**
