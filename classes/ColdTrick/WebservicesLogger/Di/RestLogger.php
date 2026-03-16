@@ -33,6 +33,11 @@ class RestLogger {
 			return;
 		}
 		
+		$request = _elgg_services()->request;
+		
+		$this->saveGetParams($request);
+		$this->savePostParams($request);
+		
 		elgg_call(ELGG_IGNORE_ACCESS, function () {
 			if (!$this->events->trigger('api_log', 'webservices_logger', $this->entity)) {
 				return;
@@ -71,8 +76,6 @@ class RestLogger {
 		$this->entity->request_method = $request->getMethod();
 		$this->entity->user_agent = $request->headers->get('User-Agent');
 		$this->entity->output_viewtype = elgg_get_viewtype();
-		$this->saveGetParams($request);
-		$this->savePostParams($request);
 		
 		$api_key = $this->detectApiKey();
 		if ($api_key instanceof \ElggApiKey) {
