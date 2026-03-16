@@ -2,6 +2,7 @@
 
 namespace ColdTrick\WebservicesLogger\Di;
 
+use Elgg\Router\Route;
 use Elgg\Traits\Di\ServiceFacade;
 
 /**
@@ -170,9 +171,16 @@ class RestLogger {
 		$params = $request->request->all();
 		unset($params['method']);
 		unset($params['api_key']);
-		unset($params['segments']);
-		unset($params['view']);
-		unset($params['_route']);
+		
+		$route = $request->getRoute();
+		if ($route instanceof Route) {
+			$route_params = $route->getMatchedParameters();
+			foreach ($route_params as $key => $value) {
+				unset($params[$key]);
+			}
+			
+			unset($params['_route']);
+		}
 		
 		$get_params = $request->query->all();
 		foreach ($get_params as $key => $value) {
