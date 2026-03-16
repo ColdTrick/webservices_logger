@@ -6,8 +6,11 @@ return [
 	
 	'webservices_logger:settings:retention' => "Keep logs for x days",
 	'webservices_logger:settings:retention:help' => "After this time the logs will be deleted",
-	'webservices_logger:settings:only_errors' => "Log only errors",
-	'webservices_logger:settings:only_errors:help' => "No longer log all requests, only those that failed",
+	'webservices_logger:settings:log_type' => "Which API requests should be logged",
+	'webservices_logger:settings:log_type:help' => "Change this to limit the amount of log entries",
+	'webservices_logger:settings:log_type:all' => "All requests",
+	'webservices_logger:settings:log_type:error' => "Only requests that result in an error",
+	'webservices_logger:settings:log_type:none' => "No requests",
 	
 	'webservices_logger:menu:admin_header:logs' => "Logs",
 	
