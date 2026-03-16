@@ -196,6 +196,12 @@ class RestLogger {
 		
 		$total_length = 0;
 		foreach ($params as $key => $value) {
+			if (is_bool($value)) {
+				$value = (int) $value;
+			} elseif (!is_scalar($value)) {
+				$value = var_export($value, true);
+			}
+			
 			$value = elgg_get_excerpt($value, 500);
 			
 			$total_length += elgg_strlen($value);
