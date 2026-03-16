@@ -13,6 +13,7 @@ return [
 	'webservices_logger:settings:log_type:none' => "No requests",
 	
 	'webservices_logger:menu:admin_header:logs' => "Logs",
+	'webservices_logger:menu:entity:api_key:inspect' => "View logs",
 	
 	'admin:configure_utilities:ws_logs' => "Webservices logs",
 	
@@ -36,4 +37,8 @@ return [
 	'webservices_logger:details:get:none' => "No GET parameters supplied",
 	'webservices_logger:details:post' => "POST",
 	'webservices_logger:details:post:none' => "No POST parameters supplied",
+	
+	'webservices_logger:forms:admin:filter:created_after' => "Created after",
+	'webservices_logger:forms:admin:filter:created_before' => "Created before",
+	'webservices_logger:forms:admin:filter:api_key' => "API key",
 ];

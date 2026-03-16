@@ -28,6 +28,9 @@ return [
 			'menu:admin_header' => [
 				'\ColdTrick\WebservicesLogger\Menus\AdminHeader::register' => [],
 			],
+			'menu:entity:object:api_key' => [
+				'\ColdTrick\WebservicesLogger\Menus\Entity::inspectApiLog' => [],
+			],
 		],
 		'rest' => [
 			'init' => [
