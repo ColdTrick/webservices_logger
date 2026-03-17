@@ -40,7 +40,11 @@ class RestLogger {
 		try {
 			$this->saveGetParams($request);
 			$this->savePostParams($request);
-			
+		} catch (\Throwable $t) {
+			$this->getLogger()->error($t);
+		}
+		
+		try {
 			elgg_call(ELGG_IGNORE_ACCESS, function () {
 				if (!$this->events->trigger('api_log', 'webservices_logger', $this->entity)) {
 					return;

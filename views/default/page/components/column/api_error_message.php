@@ -8,4 +8,4 @@ if (!$entity instanceof \WebserviceLogEntry) {
 	return;
 }
 
-echo $entity->error_message;
+echo elgg_get_excerpt((string) $entity->error_message, 100);
