@@ -17,6 +17,17 @@ echo elgg_view_field([
 			'value' => elgg_extract('created_before', $vars),
 		],
 		[
+			'#type' => 'select',
+			'#label' => elgg_echo('webservices_logger:forms:admin:filter:state'),
+			'name' => 'state',
+			'value' => elgg_extract('state', $vars),
+			'options_values' => [
+				'' => elgg_echo('all'),
+				'1' => elgg_echo('webservices_logger:log_entry:success'),
+				'0' => elgg_echo('webservices_logger:log_entry:error'),
+			],
+		],
+		[
 			'#type' => 'objectpicker',
 			'#label' => elgg_echo('webservices_logger:forms:admin:filter:api_key'),
 			'name' => 'api_key',

@@ -5,6 +5,7 @@
  */
 
 return array (
+  'webservices_logger:forms:admin:filter:state' => "Resultaat",
   'collection:object:webservice_log_entry' => 'Webservice log regels',
   'item:object:webservice_log_entry' => 'Webservice log regel',
   'webservices_logger:settings:retention' => 'Behoud de logs voor x dagen',
@@ -18,7 +19,7 @@ return array (
   'webservices_logger:menu:entity:api_key:inspect' => 'Bekijk de logs',
   'admin:configure_utilities:ws_logs' => 'Webservices logs',
   'table_columns:fromProperty:api_method' => 'API methode',
-  'table_columns:fromView:api_success' => 'Succes',
+  'table_columns:fromView:api_success' => 'Resultaat',
   'table_columns:fromView:api_error_message' => 'Foutmelding',
   'table_columns:fromView:api_details' => 'Details',
   'webservices_logger:log_entry:success' => 'Succes',

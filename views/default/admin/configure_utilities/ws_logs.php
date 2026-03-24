@@ -32,10 +32,10 @@ $list_options = [
 $form_class = ['mbl'];
 $body_vars = [];
 $show = false;
-foreach (['created_before', 'created_after', 'api_key'] as $input) {
+foreach (['created_before', 'created_after', 'state', 'api_key'] as $input) {
 	$value = get_input($input);
 	
-	if (!empty($value)) {
+	if (!elgg_is_empty($value)) {
 		$body_vars[$input] = $value;
 		$show = true;
 		
@@ -49,6 +49,13 @@ foreach (['created_before', 'created_after', 'api_key'] as $input) {
 					'name' => 'api_key',
 					'value' => $value,
 					'type' => ELGG_VALUE_GUID,
+				];
+				break;
+			case 'state':
+				$list_options['metadata_name_value_pairs'][] = [
+					'name' => 'success',
+					'value' => (int) $value,
+					'type' => ELGG_VALUE_INTEGER,
 				];
 				break;
 		}

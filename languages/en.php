@@ -18,7 +18,7 @@ return [
 	'admin:configure_utilities:ws_logs' => "Webservices logs",
 	
 	'table_columns:fromProperty:api_method' => "API method",
-	'table_columns:fromView:api_success' => "Success",
+	'table_columns:fromView:api_success' => "Result",
 	'table_columns:fromView:api_error_message' => "Error message",
 	'table_columns:fromView:api_details' => "Details",
 	
@@ -41,4 +41,5 @@ return [
 	'webservices_logger:forms:admin:filter:created_after' => "Created after",
 	'webservices_logger:forms:admin:filter:created_before' => "Created before",
 	'webservices_logger:forms:admin:filter:api_key' => "API key",
+	'webservices_logger:forms:admin:filter:state' => "Result",
 ];
