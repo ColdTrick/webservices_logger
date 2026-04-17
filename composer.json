@@ -10,6 +10,6 @@
 		"issues": "https://github.com/ColdTrick/webservices_logger/issues"
 	},
 	"conflict": {
-		"elgg/elgg": "<6.3"
+		"elgg/elgg": "<7.0"
 	}
 }

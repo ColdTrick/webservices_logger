@@ -14,6 +14,16 @@ class RestLogger {
 	use Loggable;
 	use ServiceFacade;
 	
+	protected const IGNORED_PARAMS = [
+		'method',
+	];
+	
+	protected const SENSITIVE_PARAMS = [
+		'api_key',
+		'password',
+		'password2',
+	];
+	
 	protected ?\WebserviceLogEntry $entity = null;
 	
 	protected ?string $log_type = null;
@@ -66,7 +76,7 @@ class RestLogger {
 	/**
 	 * {@inheritdoc}
 	 */
-	public static function name() {
+	public static function name():string {
 		return 'webservices_logger.logger';
 	}
 	
@@ -162,9 +172,7 @@ class RestLogger {
 	 * @return void
 	 */
 	protected function saveGetParams(\Elgg\Http\Request $request): void {
-		$params = $request->query->all();
-		unset($params['method']);
-		unset($params['api_key']);
+		$params = $this->sanitizeParams($request->query->all());
 		
 		if (empty($params)) {
 			return;
@@ -181,9 +189,7 @@ class RestLogger {
 	 * @return void
 	 */
 	protected function savePostParams(\Elgg\Http\Request $request): void {
-		$params = $request->request->all();
-		unset($params['method']);
-		unset($params['api_key']);
+		$params = $this->sanitizeParams($request->request->all());
 		
 		$route = $request->getRoute();
 		if ($route instanceof Route) {
@@ -226,5 +232,28 @@ class RestLogger {
 		}
 		
 		$this->entity->post_params = json_encode($params);
+	}
+	
+	/**
+	 * Sanitize input parameters before save
+	 *
+	 * @param array $params input params
+	 *
+	 * @return array
+	 */
+	protected function sanitizeParams(array $params): array {
+		foreach (self::IGNORED_PARAMS as $name) {
+			unset($params[$name]);
+		}
+		
+		foreach (self::SENSITIVE_PARAMS as $name) {
+			if (!isset($params[$name])) {
+				continue;
+			}
+			
+			$params[$name] = '**** sensitive data ****';
+		}
+		
+		return $params;
 	}
 }
