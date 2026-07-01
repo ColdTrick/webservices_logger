@@ -17,7 +17,7 @@ class Cron {
 	 * @return void
 	 */
 	public static function cleanupLogs(\Elgg\Event $event): void {
-		$retention = (int) elgg_get_plugin_setting('retention', 'webservice_logger');
+		$retention = (int) elgg_get_plugin_setting('retention', 'webservices_logger');
 		if ($retention < 1) {
 			return;
 		}
