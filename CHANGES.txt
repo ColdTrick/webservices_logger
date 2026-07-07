@@ -1,6 +1,10 @@
 Version history
 ===============
 
+2.0.1 (2026-07-07):
+
+- fixed: check correct setting during log cleanup
+
 2.0 (2026-05-29):
 
 - changed: updated for Elgg 7.0
