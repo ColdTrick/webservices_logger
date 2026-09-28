@@ -18,7 +18,7 @@ class Entity {
 	 */
 	public static function inspectApiLog(\Elgg\Event $event): ?MenuItems {
 		$entity = $event->getEntityParam();
-		if (!$entity instanceof \ElggApiKey) {
+		if (!$entity instanceof \ElggApiKey || !elgg_is_admin_logged_in()) {
 			return null;
 		}
 		
@@ -33,6 +33,7 @@ class Entity {
 				'segments' => 'configure_utilities/ws_logs',
 				'api_key' => $entity->guid,
 			]),
+			'parent_name' => 'admin',
 		]);
 		
 		return $result;
