@@ -1,6 +1,10 @@
 Version history
 ===============
 
+3.0 (2026-11-12):
+
+- changed: minimal Elgg version to 7.1
+
 2.0.1 (2026-07-07):
 
 - fixed: check correct setting during log cleanup
